@@ -1,5 +1,6 @@
 package com.restapi.api.events;
 
+import com.restapi.api.account.Account;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,8 @@ public class Event {
     private boolean free;
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus = EventStatus.DRAFT;
+    @ManyToOne
+    private Account manaAccount;
 
     public void update() {
         // Update free
