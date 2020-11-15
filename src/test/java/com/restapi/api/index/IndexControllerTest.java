@@ -1,5 +1,6 @@
 package com.restapi.api.index;
 
+import com.restapi.api.common.BaseControllerTest;
 import com.restapi.api.common.RestDocsConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,20 +17,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureRestDocs
-@Import(RestDocsConfiguration.class)
-@ActiveProfiles("test")
-public class IndexControllerTest {
-
-    @Autowired
-    MockMvc mockMvc;
+public class IndexControllerTest extends BaseControllerTest {
 
     @Test
     public void index() throws Exception {
-        this.mockMvc.perform(get("/api/"))
+        mockMvc.perform(get("/api/"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("_links.events").exists());
     }
