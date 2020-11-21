@@ -1,5 +1,6 @@
 package com.restapi.api.account;
 
+import com.restapi.api.common.AppProperties;
 import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
@@ -36,6 +37,9 @@ public class AccountServiceTest {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    AppProperties appProperties;
 
     @Test
     public void findByUsername() {

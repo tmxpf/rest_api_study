@@ -3,6 +3,7 @@ package com.restapi.api.configs;
 import com.restapi.api.account.Account;
 import com.restapi.api.account.AccountRole;
 import com.restapi.api.account.AccountService;
+import com.restapi.api.common.AppProperties;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -34,15 +35,26 @@ public class AppConfig {
             @Autowired
             AccountService accountService;
 
+            @Autowired
+            AppProperties appProperties;
+
             @Override
             public void run(ApplicationArguments args) throws Exception {
-                Account keesun = Account.builder()
-                                                    .email("keesun@emali.com")
-                                                    .password("keesun")
+                Account admin = Account.builder()
+                                                    .email(appProperties.getAdminUsername())
+                                                    .password(appProperties.getAdminPassword())
                                                     .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
                                                     .build();
 
-                accountService.saveAccount(keesun);
+                accountService.saveAccount(admin);
+
+                Account user = Account.builder()
+                        .email(appProperties.getUserUsername())
+                        .password(appProperties.getUserPassword())
+                        .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
+                        .build();
+
+                accountService.saveAccount(user);
 
             }
         };
