@@ -26,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-//    @Bean
-//    public TokenStore tokenStore() {
-//        return new InMemoryTokenStore();
-//    }
+    @Bean
+    public TokenStore tokenStore() {
+        return new InMemoryTokenStore();
+    }
 
     @Bean
     @Override
@@ -49,16 +49,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .anonymous()
-                    .and()
-                .formLogin()
-                    .and()
-                .authorizeRequests()
-//                    .antMatchers(HttpMethod.GET, "/api/**").anonymous()
-                .antMatchers(HttpMethod.GET, "/api/**").authenticated()
-                    .anyRequest().authenticated();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .anonymous()
+//                    .and()
+//                .formLogin()
+//                    .and()
+//                .authorizeRequests()
+////                    .antMatchers(HttpMethod.GET, "/api/**").anonymous()
+//                .antMatchers(HttpMethod.GET, "/api/**").authenticated()
+//                    .anyRequest().authenticated();
+//    }
 }
