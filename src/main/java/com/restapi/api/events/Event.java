@@ -1,6 +1,8 @@
 package com.restapi.api.events;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.restapi.api.account.Account;
+import com.restapi.api.account.AccountSerializer;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,7 +31,8 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus = EventStatus.DRAFT;
     @ManyToOne
-    private Account manaAccount;
+    @JsonSerialize(using = AccountSerializer.class)
+    private Account manager;
 
     public void update() {
         // Update free

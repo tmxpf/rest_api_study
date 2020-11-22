@@ -1,8 +1,6 @@
 package com.restapi.api.configs;
 
 
-import com.restapi.api.account.Account;
-import com.restapi.api.account.AccountRole;
 import com.restapi.api.account.AccountService;
 import com.restapi.api.common.AppProperties;
 import com.restapi.api.common.BaseControllerTest;
@@ -10,7 +8,6 @@ import com.restapi.api.common.TestDescription;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

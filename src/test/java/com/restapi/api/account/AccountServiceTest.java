@@ -1,6 +1,7 @@
 package com.restapi.api.account;
 
 import com.restapi.api.common.AppProperties;
+import com.restapi.api.common.BaseControllerTest;
 import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,10 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
-public class AccountServiceTest {
+public class AccountServiceTest extends BaseControllerTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -33,13 +31,7 @@ public class AccountServiceTest {
     AccountService accountService;
 
     @Autowired
-    AccountRepository accountRepository;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
-
-    @Autowired
-    AppProperties appProperties;
 
     @Test
     public void findByUsername() {
@@ -74,8 +66,7 @@ public class AccountServiceTest {
         // When
         accountService.loadUserByUsername(username);
 
-
-
+        // Then
 //        assertThrows(UsernameNotFoundException.class, () -> accountService.loadUserByUsername("random@email.com"));
     }
 
